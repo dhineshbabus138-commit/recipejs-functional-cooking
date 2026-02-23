@@ -121,7 +121,16 @@ const RecipeApp = (() => {
   return { init };
 })();
 
-// ✅ Initialize
+// ✅ Debounce (only once)
+const debounce = (fn, delay = 300) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => fn(...args), delay);
+  };
+};
+
+// ✅ Initialize (only once)
 document.addEventListener("DOMContentLoaded", () => {
   RecipeApp.init();
 });
